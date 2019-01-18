@@ -1,6 +1,5 @@
-Readme:
+MEAN stack blog app
 
-potrebno je pokrenuti npm install u backend i blog delu posebno.
-zatim prvo pokrenuti komandu npm start u backend delu, pa ng serve u blog delu.
+One of my first projects
 
-fokusirao sam se vise na interakciju izmedju front enda i back enda posto nemam bas neko oko za dizajn
+In order to run you need to run "ng build" in the blog folder in order to build the angular app. Then assuming you have mongo already running, you need to run "npm start" in this folder. After that you need to navigate to localhost:8080 and everything should run :D
