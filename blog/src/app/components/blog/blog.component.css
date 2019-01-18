@@ -1,0 +1,77 @@
+
+/* .container {
+  display: flex;
+
+  align-items: center;
+
+
+} */
+mat-card {
+
+  max-width: 400px;
+  /* height: 200px; */
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
+
+mat-card span {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+span {
+  font-family: "Montserrat", sans-serif;
+}
+
+mat-form-field {
+  max-width: 500px;
+}
+
+.show {
+  float: right;
+  bottom: 7px;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+
+}
+
+.show:hover {
+  box-shadow: 1px 1px 1px 1px rgba(5, 5, 5, .5);
+}
+
+.comments {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+i {
+  display: inline;
+}
+
+li {
+  padding: 0px !important;
+  margin-bottom: 2px !important;
+}
+
+li a {
+  font-size: 1em !important;
+}
+
+.likes {
+  color: green;
+  float: right;
+}
+
+.dislikes {
+  color: red;
+  float: right;
+}
+
+textarea {
+  margin-left: 5px;
+  margin-top: 5px;
+  width: 300px;
+}

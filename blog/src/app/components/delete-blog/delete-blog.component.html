@@ -1,0 +1,38 @@
+<h1>Delete blog</h1>
+
+
+<div *ngIf="isBlogFound">
+    <mat-card>
+        <mat-card-header>
+          <mat-card-title>Confirm</mat-card-title>
+
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            Do you want to delete this blog?
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button [disabled]="isHandling" type="button" color="primary" mat-button (click)="deleteBlog()">YES</button>
+          <a routerLink="/blog"><button [disabled]="isHandling" type="button" color="warn" mat-button>NO</button></a>
+        </mat-card-actions>
+      </mat-card>
+      <br>
+
+      <mat-card>
+          <mat-card-header>
+            <mat-card-title> {{ blog.title }}</mat-card-title>
+
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              {{ blog.body }}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            Posted by {{ blog.createdBy }}
+            Date {{ blog.createdAt | date:'MM dd, yyyy' }}
+          </mat-card-actions>
+        </mat-card>
+
+</div>

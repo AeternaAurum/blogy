@@ -1,0 +1,88 @@
+<div class="container">
+  <div>
+    <h1>
+      Blogy!
+    </h1>
+    <p>Write something, it eases the mind!</p>
+  </div>
+
+  <button mat-raised-button color="accent" type="button" *ngIf="!newPost" (click)="newBlog()">New</button>
+
+
+  <form [formGroup]="form" (submit)="onBlogSubmit()" *ngIf="newPost">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput required autocomplete="off" type="text" placeholder="Blog title" name="title" formControlName="title">
+      <mat-error *ngIf="form.controls.title.errors?.required">This field is required</mat-error>
+      <mat-error *ngIf="form.controls.title.errors?.required && (form.controls.title.errors?.minLength || form.controls.title.errors?.maxLength)">Length should be between 5 and 50 characters</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Body</mat-label>
+      <textarea matInput autocomplete="off" cols="30" required type="text" placeholder="Blog body" name="body" formControlName="body" ></textarea>
+      <mat-error *ngIf="form.controls.body.errors?.required">This field is required</mat-error>
+      <mat-error *ngIf="form.controls.body.errors?.required && (form.controls.body.errors?.minLength || form.controls.body.errors?.maxLength)">Length should be between 5 and 500 characters</mat-error>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" type="submit" name="button" [disabled]="isHandling || !form.valid"
+    (click)="onBlogSubmit()">Submit</button>
+    <button mat-raised-button color="warn" type="button" name="button" [disabled]="isHandling" (click)="goBack()">Go back</button>
+
+
+  </form>
+  <div>
+    <mat-card *ngFor="let blog of blogPosts">
+      <mat-card-header>
+        <p class="mat-headline">{{ blog.title }}</p>
+        <span class="likes mat-caption">{{ blog.likes }}</span>
+        <span class="dislikes mat-caption">{{ blog.dislikes }}</span>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="body-1">
+          {{ blog.body }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button color="primary" mat-button *ngIf="username !== blog.createdBy" (click)="likeBlog(blog._id)" ><i class="material-icons">thumb_up</i>  {{ blog.likes }}</button>
+        <button color="warn" mat-button *ngIf="username !== blog.createdBy" (click)="dislikeBlog(blog._id)"><i class="material-icons">thumb_down</i>  {{ blog.dislikes }}</button>
+
+        <a [routerLink]="['/edit-blog/', blog._id]" *ngIf="username === blog.createdBy">
+          <button mat-button>Edit</button>
+        </a>
+        <a [routerLink]="['/delete-blog/', blog._id]" *ngIf="username === blog.createdBy">
+          <button mat-button color="warn">Delete</button>
+        </a>
+        <button  mat-raised-button color="accent" type="button" name="button" (click)="draftComment(blog._id)">Post comment</button>
+        <form [formGroup]="commentForm" *ngIf="newComment.indexOf(blog._id) > -1">
+          <textarea required matInput maxlength="300" formControlName="comment" name="comment" id="comment" cols="30" rows="10" #comment></textarea><br>
+          <button [disabled]="comment.value.length < 1 || isHandling" mat-raised-button color="primary" type="button" (click)="postComment(blog._id)">Submit comment</button>
+          <button [disabled]="isHandling" mat-raised-button color="warn" type="button" (click)="cancelComment(blog._id)">Cancel</button>
+        </form>
+
+      </mat-card-actions>
+      <mat-card-footer>
+          <span class="mat-caption">Posted by <a [routerLink]="['/user/', blog.createdBy]">{{ blog.createdBy }}</a></span>
+          <span class="mat-caption">Date: {{ blog.createdAt | date: 'MM dd, yyyy'}}</span>
+
+              <span class="show mat-caption" (click)="expand(blog._id)" *ngIf="enabledComments.indexOf(blog._id) === -1 && blog.comments.length > 0">Show comments
+
+              </span>
+
+              <span class="show mat-caption" *ngIf="enabledComments.indexOf(blog._id) > -1"  (click)="collapse(blog._id)">Hide comments
+              </span>
+
+            <br>
+            <br>
+            <hr *ngIf="enabledComments.indexOf(blog._id) > -1">
+          <ul>
+            <div *ngIf="enabledComments.indexOf(blog._id) > -1">
+              <li class="comment" *ngFor="let comment of blog.comments">
+                <span  class="mat-caption"><a [routerLink]="['/user/', comment.author]">{{ comment.author }}</a> : {{ comment.comment}}</span>
+              </li>
+            </div>
+          </ul>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+
+</div>

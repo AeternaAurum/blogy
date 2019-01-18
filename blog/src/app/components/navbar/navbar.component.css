@@ -1,0 +1,23 @@
+.fill-space {
+  flex: 1 1 auto;
+}
+nav {
+  background: #2D2E2E;
+  height: 100%;
+  position: fixed;
+  max-width: 75px;
+}
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+nav ul li a {
+  color: #fff;
+  padding: 20px;
+  display: block;
+  cursor: pointer;
+}
+nav ul li .activated {
+  background-color: #00a8ff;
+}

@@ -1,0 +1,46 @@
+<!-- <mat-toolbar color="primary">
+  <a mat-button routerLink="/">Home</a>
+
+  <span class="fill-space"></span>
+  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+    <a *ngIf="authService.isLoggedIn()" mat-button routerLink="/dashboard">Dashboard</a>
+    <a *ngIf="authService.isLoggedIn()" mat-button routerLink="/blog">Blog</a>
+    <a *ngIf="authService.isLoggedIn()" mat-button routerLink="/profile">Profile</a>
+    <a *ngIf="!authService.isLoggedIn()" mat-button routerLink="/signup">Sign up</a>
+    <a *ngIf="authService.isLoggedIn()" mat-button (click)="onLogout()">Log out</a>
+    <a *ngIf="!authService.isLoggedIn()" mat-button routerLink="/login">Log in</a>
+
+
+  </div>
+
+
+</mat-toolbar>
+ -->
+
+<nav color="primary">
+  <ul>
+    <li>
+      <a routerLink="/" >
+        <i class="material-icons">home</i>
+      </a>
+    </li>
+    <li>
+        <a *ngIf="authService.isLoggedIn()"  routerLink="/dashboard"><i class="material-icons">dashboard</i></a>
+    </li>
+    <li>
+        <a *ngIf="authService.isLoggedIn()"  routerLink="/blog"><i class="material-icons">create</i></a>
+    </li>
+    <li>
+        <a *ngIf="authService.isLoggedIn()" routerLink="/profile"><i class="material-icons">face</i></a>
+    </li>
+    <li>
+        <a *ngIf="!authService.isLoggedIn()" routerLink="/signup">Sign up</a>
+    </li>
+    <li>
+        <a *ngIf="authService.isLoggedIn()"  (click)="onLogout()">Log out</a>
+    </li>
+    <li>
+        <a *ngIf="!authService.isLoggedIn()"  routerLink="/login">Log in</a>
+    </li>
+  </ul>
+</nav>

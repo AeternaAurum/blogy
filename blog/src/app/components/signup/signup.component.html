@@ -1,0 +1,35 @@
+<h1>
+  Sign up
+</h1>
+
+
+<form class="container" [formGroup]="form" (submit)="onSignUp()">
+  <mat-form-field>
+    <input matInput required type="text" placeholder="Username" name="username" formControlName="username">
+    <mat-error *ngIf="form.controls.username.errors">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput required type="email" placeholder="Email" name="email" formControlName="email">
+    <mat-error *ngIf="form.controls.email.errors">{{getEmailErrorMessage()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput required type="password" placeholder="Password" name="password" formControlName="password">
+    <mat-error *ngIf="form.controls.password.errors">Must match and be 8-35 chars</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput required type="password" placeholder="Confirm password" name="confirm" formControlName="confirm">
+    <mat-error *ngIf="form.controls.confirm.errors">Must match and be 8-35 chars</mat-error>
+  </mat-form-field>
+
+
+  <button [disabled]="!form.valid || handling" mat-raised-button>Submit</button>
+
+</form>
+
+<!-- <p>Username: {{ form.controls.username.value }}</p>
+<p>Password: {{ form.controls.password.value }}</p>
+<p>Email: {{ form.controls.email.value }}</p>
+<p>Confirm: {{ form.controls.confirm.value }}</p> -->

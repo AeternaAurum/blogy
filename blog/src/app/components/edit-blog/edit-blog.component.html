@@ -1,0 +1,22 @@
+<h1>Edit blog</h1>
+
+<form class="container" (submit)="updateBlogSubmit()" *ngIf="!isLoading">
+
+  <mat-form-field>
+    <label for="title">Title</label>
+    <input [disabled]="isHandling" matInput name="title" type="text" placeholder="title" [(ngModel)]="blog.title">
+  </mat-form-field>
+
+  <mat-form-field>
+    <label for="body">Body</label>
+    <textarea matInput name="body" [disabled]="isHandling" id="" cols="80" rows="8" [(ngModel)]="blog.body"></textarea>
+    <!-- <textarea [disabled]="isHandling" matInput placeholder="body" name="body" [(ngModel)]="blog.body"> -->
+  </mat-form-field>
+
+  <a [routerLink]="['/delete-blog/', blog._id]">
+    <button mat-button color="warn" type="button" [disabled]="isHandling">Delete</button>
+  </a>
+  <button mat-button type="button" [disabled]="isHandling" color="accent"  (click)="goBack()">Go back</button>
+  <button mat-button type="button" [disabled]="isHandling" color="primary" (click)="updateBlogSubmit()">Save changes</button>
+
+</form>
